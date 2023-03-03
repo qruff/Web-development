@@ -1,0 +1,1 @@
+await fs.writeFile(path.join(__dirname, "greeting.txt", "Hello World!"));
