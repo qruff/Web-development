@@ -1,0 +1,20 @@
+:host {
+  overflow-y: auto;
+}
+.card{
+  padding: 10px;
+  margin-top: 0 auto;
+  border-radius: 5px;
+  background-color: rgb(218, 145, 145);
+}
+.card p {
+  text-align: left;
+  font-size: 24px;
+}
+
+.content {
+  height: 2100px;
+  width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,22 @@
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" >
+    <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%"
+         infinite-scroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="300"
+         (scrolled)="onScroll()"
+         *ngFor="let product of products">
+         <div class="card">
+           <div>
+              <p>Firstname: {{product.firstname}}</p>
+              <p>Lastname: {{product.lastname}}</p>
+              <p>Email: {{product.email}}</p>
+              <p>Phone: {{product.phone}}</p>
+              <p>Birthday: {{product.birthday}}</p> 
+              <p>Gender: {{product.gender}}</p>                       
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
