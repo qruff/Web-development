@@ -1,0 +1,6 @@
+{
+  "timestamp": "2023-05-15T20:42:24.684+00:00",
+  "status": 403,
+  "error": "Forbidden",
+  "path": "/cars/10"
+}

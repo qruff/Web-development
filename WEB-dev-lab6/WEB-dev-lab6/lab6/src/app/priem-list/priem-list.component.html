@@ -1,0 +1,20 @@
+<table class="table table-striped table-bordered">
+  <thead class="table-dark">
+  <tr>
+    <th> Дата</th>
+    <th> Врач</th>
+    <th> Пациент</th>
+    <th [hidden]="!this.app.authAdmin"> Действия</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let priem of priems">
+    <td >{{retDate(priem.date)}}</td>
+    <td >{{priem.doctor.lastname}}</td>
+    <td >{{priem.patient.lastname}}</td>
+    <td [hidden]="!this.app.authAdmin">
+      <a (click)="remove(priem.id)" class="btn btn-danger">Удалить </a>
+    </td>
+  </tr>
+  </tbody>
+</table>

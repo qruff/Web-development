@@ -1,0 +1,26 @@
+<div style="display: flex" class="navbar navbar-expand-lg navbar-dark bg-primary " th:fragment="navi(activeTab)">
+    <div [hidden]="this.app.authenticated" >
+        <form (sumbit)="login()" method="POST">
+            <div class="input-group-prepend">
+                <input required placeholder="Login" name="username"  [(ngModel)]="credentials.username"  aria-describedby="inputGroup-sizing-sm" style="margin-right: 10px; border-radius: 5px;">
+                <input required type="password" placeholder="Password" [(ngModel)]="credentials.password" name="password" aria-describedby="inputGroup-sizing-sm"  style="margin-right: 10px ; border-radius: 5px;">
+                <button type="submit" (click)="login()"  class="btn btn-primary" style="background-color: darkblue" >Войти</button>
+            </div>
+        </form>
+    </div>
+    <div [hidden]="!this.app.authenticated"  class="nav-item" style="margin-right: 5px;">
+        <form  method="POST">
+            <input style="margin-left:auto;" (click)="logout()" type="submit" class="btn btn-danger" value="Logout"/>
+        </form>
+    </div>
+  
+  <div  [hidden]="!this.app.authenticated" >
+    <a  [hidden]="!this.app.authAdmin" routerLinkActive="active-link" style="margin-right: 5px;" class="btn btn-light" (click)="openModal()" >Добавить нового врача</a>
+    <a  [hidden]="!this.app.authAdmin" routerLink="/newpatient" routerLinkActive="active-link" style="margin-right: 5px;" class="btn btn-light">Добавить пациента</a>
+    <a routerLink="/" routerLinkActive="active-link" style="margin-right: 5px;" class="btn btn-light">Врачи</a>
+    <a routerLink="/patients" routerLinkActive="active-link" style="margin-right: 5px;" class="btn btn-light">Все пациенты</a>
+    <a routerLink="/priems" routerLinkActive="active-link" class="btn btn-light">История приемов</a>
+  </div>
+
+  
+  </div>

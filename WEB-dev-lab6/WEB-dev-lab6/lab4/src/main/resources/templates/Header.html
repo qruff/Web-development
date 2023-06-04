@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div style="display: flex" class="navbar navbar-expand-lg navbar-dark bg-primary " th:fragment="navi(activeTab)">
+    <div sec:authorize="isAnonymous()" >
+        <form th:action="@{/authenticateTheUser}" method="POST">
+            <div class="input-group-prepend">
+                <input required placeholder="Login" name="username"  aria-describedby="inputGroup-sizing-sm" style="margin-right: 10px; border-radius: 5px;">
+                <input required type="password" placeholder="Password" name="password" aria-describedby="inputGroup-sizing-sm"  style="margin-right: 10px ; border-radius: 5px;">
+                <button type="submit"  class="btn btn-primary" style="background-color: darkblue" >Войти</button>
+            </div>
+        </form>
+    </div>
+    <div sec:authorize="isAuthenticated()" class="nav-item" style="margin-right: 5px;">
+        <form th:action="@{/logout}" method="POST">
+            <input style="margin-left:auto;" type="submit" class="btn btn-danger" value="Logout"/>
+        </form>
+    </div>
+
+<div sec:authorize="hasRole('USER')" >
+    <a  sec:authorize="hasRole('ADMIN')" th:href="@{/cars/newcar}" class="btn btn-light">Добавить новую машину</a>
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/cars/newbox}" class="btn btn-light">Добавить бокс</a>
+    <a th:href="@{/cars}" class="btn btn-light">Автомобили</a>
+    <a th:href="@{/cars/patient}" class="btn btn-light">Все боксы</a>
+    <a th:href="@{/cars/washes}" class="btn btn-light">История моек</a>
+</div>
+</div>
+</body>
+</html>

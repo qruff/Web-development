@@ -1,0 +1,30 @@
+GET http://localhost:8082/cars/10
+
+<> 2023-05-15T234341.200.json
+
+###
+
+GET http://localhost:8082/cars/10
+
+<> 2023-05-15T234337.200.json
+
+###
+
+DELETE http://localhost:8082/cars/10
+
+<> 2023-05-15T234224.403.json
+
+###
+
+POST http://localhost:8082/cars
+
+<> 2023-05-15T233237.403.json
+
+###
+
+PUT http://localhost:8082/cars
+
+<> 2023-05-15T233219.403.json
+
+###
+

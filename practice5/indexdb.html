@@ -1,0 +1,113 @@
+<!doctype html>
+<script src="https://cdn.jsdelivr.net/npm/idb@3.0.2/build/idb.min.js"></script>
+<input type="file" id="fileInput">
+<button onclick="uploadFile()">Загрузить файл</button>
+<br>
+<button onclick="clearBooks()">Очистить хранилище</button>
+
+<p>Список файлов:</p>
+
+<ul id="listElem"></ul>
+  
+<script>
+
+
+async function uploadFile() {
+  var input = document.getElementById("fileInput");
+  if(input.type )
+  var file = input.files[0];
+  let name = file.name;
+  let tx = db.transaction('tables', 'readwrite');
+
+  try {
+    await tx.objectStore('tables').add({name, file});
+    await list();
+    input.files = null;
+  } catch(err) {
+    if (err.name == 'ConstraintError') {
+      alert("Такая таблица уже существует");
+    } else {
+      throw err;
+    }
+  }
+}
+
+
+let db;
+
+init();
+
+async function init() {
+  db = await idb.openDb('xmlFiles', 1, db => {
+    db.createObjectStore('tables', {keyPath: 'name'});
+  });
+
+  list();
+}
+
+async function list() {
+  let tx = db.transaction('tables');
+  let tabStore = tx.objectStore('tables');
+
+  let tables = await tabStore.getAll();
+  if (tables.length){
+    listElem.innerHTML = tables.map(table => 
+    `<li>
+        <a href='${URL.createObjectURL(new Blob([table.file], {type: 'xlsx'}))}' download="${table.name}"> ${table.name} </a>
+      </li>`).join('');
+  } else {
+    listElem.innerHTML = '<li>Файлы отсутствуют.</li>'
+  }
+
+
+}
+
+async function clearBooks() {
+  let tx = db.transaction('tables', 'readwrite');
+  await tx.objectStore('tables').clear();
+  await list();
+}
+
+async function addBook() {
+const fileInput = document.querySelector('#fileInput');
+
+// обработчик события при выборе файла
+fileInput.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = (event) => {
+    const fileData = event.target.result;
+
+    // открытие базы данных
+    const request = indexedDB.open('filesDB', 1);
+
+    // создание объектного хранилища
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      db.createObjectStore('files', { autoIncrement: true });
+    };
+
+    // добавление файла в объектное хранилище
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const transaction = db.transaction(['files'], 'readwrite');
+      const store = transaction.objectStore('files');
+
+      const newFile = { data: fileData, name: file.name };
+      store.add(newFile);
+
+      transaction.oncomplete = () => {
+        console.log('Файл успешно добавлен в IndexDB');
+      };
+    };
+  };
+
+  reader.readAsArrayBuffer(file);
+});
+
+}
+
+
+
+</script>

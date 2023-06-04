@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="doctors@localhost">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.43">
+    <root id="1">
+      <ServerVersion>14.5</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="database"/>
+    <database id="3" parent="1" name="db2"/>
+    <database id="4" parent="1" name="db_lab4"/>
+    <database id="5" parent="1" name="demo"/>
+    <database id="6" parent="1" name="doctors">
+      <Current>1</Current>
+    </database>
+    <database id="7" parent="1" name="ekzamen"/>
+    <database id="8" parent="1" name="example"/>
+    <database id="9" parent="1" name="indiv"/>
+    <database id="10" parent="1" name="java"/>
+    <database id="11" parent="1" name="java_tasks"/>
+    <database id="12" parent="1" name="lab1"/>
+    <database id="13" parent="1" name="lab4try"/>
+    <database id="14" parent="1" name="newdb"/>
+    <database id="15" parent="1" name="oop"/>
+    <database id="16" parent="1" name="postgres"/>
+    <database id="17" parent="1" name="praktika"/>
+    <database id="18" parent="1" name="prog"/>
+    <database id="19" parent="1" name="sms_da"/>
+    <database id="20" parent="1" name="sms_db"/>
+    <database id="21" parent="1" name="template0"/>
+    <database id="22" parent="1" name="template1"/>
+    <database id="23" parent="1" name="tests"/>
+    <database id="24" parent="1" name="travelagency"/>
+    <database id="25" parent="1" name="try"/>
+    <schema id="26" parent="6" name="information_schema"/>
+    <schema id="27" parent="6" name="pg_catalog"/>
+    <schema id="28" parent="6" name="public">
+      <Current>1</Current>
+    </schema>
+  </database-model>
+</dataSource>
