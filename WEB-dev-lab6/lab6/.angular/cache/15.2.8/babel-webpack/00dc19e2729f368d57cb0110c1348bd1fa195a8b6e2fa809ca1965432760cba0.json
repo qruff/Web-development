@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Box {}","map":{"version":3,"mappings":"AAAA,OAAM,MAAOA,GAAG","names":["Box"],"sourceRoot":"","sources":["C:\\WEB-dev\\lab6\\src\\app\\class\\box.ts"],"sourcesContent":["export class Box {\n  id!:number;\n  name!: string;\n  type!: string;\n}\n"]},"metadata":{},"sourceType":"module","externalDependencies":[]}

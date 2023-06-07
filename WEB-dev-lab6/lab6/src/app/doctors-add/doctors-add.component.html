@@ -1,0 +1,57 @@
+<div class="modal-header"> 
+    <h4 class="modal-title">Модальное окно</h4> 
+    <button type="button" class="close" (click)="bsModalRef.hide()"> 
+      <span>&times;</span> 
+    </button> 
+  </div> 
+  <div class="modal-body"> 
+    <form  method="PUT">
+        <div class ="form-group">
+            <label> Фамилия </label>
+            <input
+                    type = "text"
+                    name = "lastname"
+                    [(ngModel)] = "doctor.lastname"
+                    class = "form-control"
+                    placeholder="Петров"
+            />
+        </div>
+
+        <div class ="form-group">
+            <label> Имя </label>
+            <input
+                    type = "text"
+                    name = "firstname"
+                    [(ngModel)] = "doctor.firstname"
+                    class = "form-control"
+                    placeholder="Иван"
+            />
+        </div>
+        <div class ="form-group">
+            <label> Отчество </label>
+            <input
+                    type = "text"
+                    name = "middlename"
+                    [(ngModel)] = "doctor.middlename"
+                    class = "form-control"
+                    placeholder="Иванович"
+            />
+        </div>
+
+        <div class ="form-group">
+            <label> Статус </label>
+            <select name="type" [(ngModel)] = "doctor.type" class="form-control" >
+                <option th:value="Терапевт">Терапевт</option>
+                <option th:value="Офтальмолог">Офтальмолог</option>
+                <option th:value="Хирург">Хирург</option>
+                <option th:value="Кардиолог">Кардиолог</option>
+            </select>
+        </div>
+
+        <div class = "modal-footer">
+            <button type="submit" class = "btn btn-primary" (click)="bsModalRef.hide()">
+                Изменить
+            </button>
+        </div>
+    </form>
+  </div>

@@ -1,0 +1,27 @@
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+    <tr>
+        <th> Фамилия</th>
+        <th> Имя</th>
+        <th> Отчество</th>
+        <th>Тип</th>
+        <th [hidden]="!this.app.authAdmin"> Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor ="let doctor of doctors">
+        <td >{{doctor.lastname}}</td>
+        <td >{{doctor.firstname}}</td>
+        <td >{{doctor.middlename}}</td>
+        <td>{{doctor.type}}</td>
+        <td [hidden]="!this.app.authAdmin">
+            <a routerLink="/newpriem/{{doctor.id}}"
+               class="btn btn-success">Принять</a>
+            <a  (click)="openModal()"
+               class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Изменить</a>
+            <a (click)="remove(doctor.id)"
+               class="btn btn-danger">Удалить </a>
+        </td>
+    </tr>
+    </tbody>
+  </table>

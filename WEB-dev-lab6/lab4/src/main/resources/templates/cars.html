@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <title>Car Wash</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="~{Header :: navi(Home)}"/>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th> Гос.номер</th>
+            <th> Марка</th>
+            <th> Статус</th>
+            <th sec:authorize="hasRole('ADMIN')"> Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="doctor: ${cars}">
+            <td th:text="${doctor.number}"></td>
+            <td th:text="${doctor.brand}"></td>
+            <td th:text="${doctor.status}"></td>
+            <td sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/cars/wash/{id} (id=${doctor.id})}"
+                   class="btn btn-success">Помыть</a>
+                <a th:href="@{/cars/edit/{id}(id=${doctor.id})}"
+                   class="btn btn-primary">Изменить</a>
+                <a th:href="@{/cars/del/{id} (id=${doctor.id})}" class="btn btn-danger">Удалить </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

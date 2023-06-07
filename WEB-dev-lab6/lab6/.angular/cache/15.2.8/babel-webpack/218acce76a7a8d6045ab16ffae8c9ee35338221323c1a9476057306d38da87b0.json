@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Car {}","map":{"version":3,"mappings":"AAAA,OAAM,MAAOA,GAAG","names":["Car"],"sourceRoot":"","sources":["C:\\WEB-dev\\lab6\\src\\app\\class\\car.ts"],"sourcesContent":["export class Car {\n  id!: number;\n  brand!: string;\n  number!: string;\n  status!: string;\n}\n"]},"metadata":{},"sourceType":"module","externalDependencies":[]}
